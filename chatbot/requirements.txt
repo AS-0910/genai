@@ -12,3 +12,4 @@ langchain_experimental
 mysql-connector-python
 pymysql
 chromadb
+cryptography
