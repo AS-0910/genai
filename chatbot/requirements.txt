@@ -1,0 +1,14 @@
+langchain
+langchain_community
+sentence_transformers
+faiss-cpu
+python-dotenv
+streamlit
+tiktoken
+faiss-cpu
+protobuf
+langchain_core
+langchain_experimental
+mysql-connector-python
+pymysql
+chromadb
