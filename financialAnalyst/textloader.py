@@ -21,7 +21,7 @@ def split_text_into_chunks(text, chunk_size=100, overlap=0):
 
 def split_text_into_recursive_chunks(text, chunk_size=100, overlap=0):
     text_splitter = RecursiveCharacterTextSplitter(
-        separators=["\n", "\n\n ", " "],
+        separators=["\n", "."],
         chunk_size=chunk_size,
         chunk_overlap=overlap
     )
@@ -36,9 +36,9 @@ def sentence_transformer_embeddings(texts, model_name='all-MiniLM-L6-v2'):
     return embeddings
 
 def create_faiss_index(embeddings):
-    embeddings = np.array(embeddings).reshape(1,-1)
+    embeddings = np.array(embeddings)
     dimension = embeddings.shape[1]
-    index = faiss.IndexFlatL2(dimension) ##2d required for faiss
+    index = faiss.IndexFlatL2(dimension)
     index.add(embeddings)
     print(f"FAISS index created with {index.ntotal} vectors.")
     return index
@@ -58,7 +58,20 @@ if __name__ == "__main__":
     # for chunk in chunks:
     #     print(len(chunk))
 
-    embedding=sentence_transformer_embeddings("My name is Ankur and I am a financial analyst.")
+    text = '''
+    My work is software engineering.
+    I am a financial analyst.
+    My name is Ankur.
+    I love to play cricket.
+    '''
+
+    chunks = split_text_into_recursive_chunks(text,20)
+    for chunk in chunks :
+        print(chunk)
+
+    embedding=sentence_transformer_embeddings(chunks)
     index = create_faiss_index(embedding)
-    query_embedding = sentence_transformer_embeddings("What is your name?")
+
+    query_embedding = sentence_transformer_embeddings(["What is my hobby?"])
     distances, indices = search_faiss_index(index, query_embedding, top_k=1)
+    print(f"Closest chunk: {chunks[indices[0][0]]}, Distance: {distances[0][0]}")
