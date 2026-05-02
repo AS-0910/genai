@@ -58,13 +58,21 @@ class FileProcessor:
     def process_and_add_uploaded_file(self, upload_file):
         # Implement any additional processing logic here if needed
         # create temporary file and save the uploaded file to it
+         # Step 1: Create temp file safely
         try:
-            temp_file = tempfile.NamedTemporaryFile("wb", suffix=".pdf", delete=False)
-            temp_file.write(upload_file.read())
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+                tmp.write(upload_file.read())
+                temp_path = tmp.name
 
-            loader = PyMuPDFLoader(temp_file.name)
+            # Step 2: Load AFTER file is closed
+            loader = PyMuPDFLoader(temp_path)
             docs = loader.load()
-            os.unlink(temp_file.name)  # Delete temp file
+
+            # Step 3: Explicitly delete loader (important)
+            del loader
+
+            # Step 4: Now safe to delete
+            os.remove(temp_path)
 
             ##convert ot chunks
             chunks=self.convert_docs_to_chunks(docs)

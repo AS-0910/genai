@@ -1,19 +1,24 @@
-from chromaClient import get_or_create_collection
-from embeddings import get_embedding_function
-from crossEncoder import CrossEncoderModel
+from chromaClient import ChromaDBClient
+from embeddings import EmbeddingModel
+from crossEncoder import CrossEncoder
 
 class Query:
     def __init__(self):
-        self.embedding_function = get_embedding_function()
-        self.collection = get_or_create_collection("rag-local-collection", self.embedding_function)
-        self.encoder= CrossEncoderModel()
+        self.embedding_function = EmbeddingModel().get_embedding_function()
+        self.collection = ChromaDBClient().get_or_create_collection("rag-local-collection", self.embedding_function)
+        self.encoder= CrossEncoder()
 
-    def query_collection(self, query, n_results=5):
+    def query_collection(self, query, n_results=3):
         try:
-            results = self.collection.query(query=query, n_results=n_results)
+            results = self.collection.query(query_texts=[query], n_results=n_results)
             return results
         except Exception as e:
-            return f"An error occurred while querying the collection: {str(e)}"
+            return {
+                "error": str(e),
+                "documents": [[]],
+                "ids": [[]],
+                "metadatas": [[]],
+            }
         
     def re_rank_results(self, prompt, documents):
         # Implement re-ranking logic here using cross-encoders or other methods

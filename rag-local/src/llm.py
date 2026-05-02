@@ -1,16 +1,16 @@
 from ollamaClient import OllamaClient
 from systemPrompt import get_system_prompt
+import ollama
 
 class LLM:
-    def __init__(self, name):
-        self.llm=OllamaClient(
-            model="llama3.2:3b",
-            stream=True,
-        )
+    def __init__(self):
+        self.llm=OllamaClient()
 
     def call_llm(self, context, prompt):
         try:
-            response = self.llm.chat(
+            response = ollama.chat(
+                model="llama3.2:3b",
+                stream=True,
                 messages=[
                     {
                         "role": "system",

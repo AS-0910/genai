@@ -1,8 +1,8 @@
-from sentence_transformers import CrossEncoder
+from sentence_transformers import CrossEncoder as STCrossEncoder
 
 class CrossEncoder:
     def __init__(self):
-        self.model = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
+        self.model = STCrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
         # Initialize your cross-encoder model here (e.g., load the model)
 
     def encode(self, prompt, documents : list[str])->tuple[str, list[int]]:
