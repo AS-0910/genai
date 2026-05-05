@@ -1,0 +1,12 @@
+## Student Name       | Phone       | Email
+
+Rahul Sharma       | 9876543210 | [rahul.sharma@gmail.com](mailto:rahul.sharma@gmail.com)
+Priya Verma        | 9123456780 | [priya.verma@gmail.com](mailto:priya.verma@gmail.com)
+Amit Singh         | 9988776655 | [amit.singh@gmail.com](mailto:amit.singh@gmail.com)
+Neha Gupta         | 9012345678 | [neha.gupta@gmail.com](mailto:neha.gupta@gmail.com)
+Arjun Mehta        | 9090909090 | [arjun.mehta@gmail.com](mailto:arjun.mehta@gmail.com)
+Sneha Kapoor       | 9345678901 | [sneha.kapoor@gmail.com](mailto:sneha.kapoor@gmail.com)
+Vikram Patel       | 9765432109 | [vikram.patel@gmail.com](mailto:vikram.patel@gmail.com)
+Anjali Desai       | 9871234560 | [anjali.desai@gmail.com](mailto:anjali.desai@gmail.com)
+Karan Malhotra     | 9654321780 | [karan.malhotra@gmail.com](mailto:karan.malhotra@gmail.com)
+Pooja Nair         | 9823456710 | [pooja.nair@gmail.com](mailto:pooja.nair@gmail.com)
