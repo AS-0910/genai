@@ -20,7 +20,7 @@ from langchain_core.prompts import PromptTemplate, ChatPromptTemplate
 from langchain_classic.chains import LLMChain, SequentialChain, SimpleSequentialChain
 from langchain_classic.output_parsers import CommaSeparatedListOutputParser
 
-api_key = "AIzaSyByIgTnHsP-bkgCSw0lfD3COFE-G1_Vb_Y"
+
 
 # Initialize the LLM
 llm = ChatGoogleGenerativeAI(google_api_key=api_key, model="gemini-3-flash-preview")
