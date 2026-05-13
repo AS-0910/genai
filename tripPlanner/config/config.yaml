@@ -1,0 +1,3 @@
+llm:
+  provider: google_genai
+  model: gemini-3-flash-preview

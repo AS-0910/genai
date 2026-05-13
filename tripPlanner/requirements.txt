@@ -13,4 +13,7 @@ langchain_tavily
 langchain_groq
 langchain_openai
 langgraph
-langchain-google-community
+langchain_google_community
+setuptools
+
+-e .
