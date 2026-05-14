@@ -8,7 +8,7 @@ import json
 
 app = FastAPI()
 
-@app.get("/query")
+@app.post("/query")
 def query(request: RequestModel):
     graph = GraphBuilder()
     react_app = graph.__call__()
