@@ -7,7 +7,7 @@ import sys
 ##we will add ui in future
 
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = "http://localhost:9001"
 
 st.set_page_config(
     page_title="Trip Planner",

@@ -1,4 +1,4 @@
-from config_loader import ConfigLoader
+from utils.config_loader import ConfigLoader
 from langchain.chat_models import init_chat_model
 from dotenv import load_dotenv
 import os
