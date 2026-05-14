@@ -15,5 +15,6 @@ langchain_openai
 langgraph
 langchain_google_community
 setuptools
+ipykernel
 
 -e .

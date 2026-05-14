@@ -11,7 +11,7 @@ app = FastAPI()
 @app.post("/query")
 def query(request: RequestModel):
     graph = GraphBuilder()
-    react_app = graph.__call__()
+    react_app = graph.build_graph()
 
     png_graph = react_app.get_graph().draw_mermaid_png()
     with open("my_graph.png", "wb") as f:
