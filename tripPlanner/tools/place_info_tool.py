@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 class PlaceSearchTool:
     def __init__(self):
         self.tavily_search = TavilyPlaceSearchTool()
-        self.place_search_tool_list = self._setup_tools()
+        self.tools_list = self._setup_tools()
 
     def _setup_tools(self) -> List:
         """Setup all tools for the place search tool"""
