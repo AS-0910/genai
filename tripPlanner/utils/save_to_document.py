@@ -1,9 +1,14 @@
 import os
 import datetime
+import logging
+
+logger = logging.getLogger(__name__)
 
 def save_document(response_text: str, directory: str = "./output"):
     """Export travel plan to Markdown file with proper formatting"""
+    logger.debug(f"save_document called with directory: {directory}")
     os.makedirs(directory, exist_ok=True)
+    logger.debug(f"Directory ensured: {directory}")
     
     
     # Create markdown content with metadata header
@@ -26,17 +31,16 @@ def save_document(response_text: str, directory: str = "./output"):
         # Generate timestamp-based filename
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         filename = f"{directory}/AI_Trip_Planner_{timestamp}.md"
-
-        print(filename)
+        logger.debug(f"Generated filename: {filename}")
 
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(markdown_content)
         
-        print(f"Markdown file saved as: {filename}")
+        logger.info(f"Markdown file saved as: {filename}")
         return filename
         
     except Exception as e:
-        print(f"Error saving markdown file: {e}")
+        logger.error(f"Error saving markdown file: {e}", exc_info=True)
         return None
     
 

@@ -1,4 +1,9 @@
 from langchain_core.messages import SystemMessage
+import logging
+
+logger = logging.getLogger(__name__)
+
+logger.debug("Loading SYSTEM_PROMPT")
 
 SYSTEM_PROMPT = SystemMessage(
     content="""You are a helpful AI Travel Agent and Expense Planner. 
@@ -22,3 +27,5 @@ SYSTEM_PROMPT = SystemMessage(
     Provide everything in one comprehensive response formatted in clean Markdown.
     """
 )
+
+logger.debug("SYSTEM_PROMPT loaded successfully")
