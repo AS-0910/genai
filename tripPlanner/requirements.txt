@@ -16,5 +16,6 @@ langgraph
 langchain_google_community
 setuptools
 ipykernel
+tavily-python
 
 -e .
