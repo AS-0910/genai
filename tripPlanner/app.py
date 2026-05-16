@@ -2,11 +2,21 @@ from fastapi import FastAPI
 from agent.agent_worflow  import GraphBuilder
 from starlette.responses import JSONResponse
 from dto.request import RequestModel
+from fastapi.middleware.cors import CORSMiddleware
 import os
 import datetime
 import json
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # set specific origins in prod
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @app.post("/query")
 def query(request: RequestModel):

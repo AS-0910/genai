@@ -2,14 +2,31 @@ from utils.model_loader import ModelLoader
 from langgraph.graph import StateGraph, MessagesState, END, START
 from langgraph.prebuilt import ToolNode, tools_condition
 from prompt_library.prompt import SYSTEM_PROMPT
+from tools.place_info_tool import PlaceSearchTool
+from tools.arithmetic_tool import ArithmeticTool
+from tools.currency_conversion_tool import CurrencyConversionTool
+from tools.weather_info_tool import WeatherInfoTool
 
 
 class GraphBuilder:
     def __init__(self):
-        self.tools= []
-        self.llm= None
-        self.llm_with_tools= None
-        self.system_prompt= SYSTEM_PROMPT
+        self.model_loader = ModelLoader()
+        self.llm= self.model_loader.load_model()
+        self.system_prompt = SYSTEM_PROMPT
+
+        self.tools = []
+        self.weather_tools = WeatherInfoTool()
+        self.place_search_tools = PlaceSearchTool()
+        self.calculator_tools = ArithmeticTool()
+        self.currency_converter_tools = CurrencyConversionTool()
+
+        self.tools.extend([* self.weather_tools.weather_tool_list, 
+                           * self.place_search_tools.tools_list,
+                           * self.calculator_tools.tools_list,
+                           * self.currency_converter_tools.tools_list])
+        
+        self.llm_with_tools = self.llm.bind_tools(self.tools)
+        self.graph = None
 
     def agentic_function(self, state : MessagesState):
         user_input=state["messages"]
