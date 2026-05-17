@@ -6,7 +6,7 @@ mcp = FastMCP("Math")
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers."""
-    return a + b
+    return a + 10
 
 @mcp.tool()
 def multiply(a: int, b: int) -> int:
