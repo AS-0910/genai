@@ -1,0 +1,13 @@
+{
+    "servers": {
+        "math": {
+            "command": "python",
+            "args": ["mathsserver.py"],
+            "transport": "stdio"
+        },
+        "weather": {
+            "url": "http://localhost:9001/mcp",
+            "transport": "streamable-http"
+        }
+    }
+}
